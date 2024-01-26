@@ -1,0 +1,94 @@
+.home-container {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.home-navbar {
+  width: 100%;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  display: flex;
+  justify-content: center;
+}
+.home-section {
+  width: 100%;
+  height: 804px;
+  display: flex;
+  align-items: center;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+  background-color: #244444;
+}
+.home-text {
+  color: rgb(255, 255, 255);
+  font-size: 54px;
+  max-width: 1000px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 65px;
+}
+.home-about-us {
+  gap: var(--dl-space-space-fiveunits);
+  width: 100%;
+  height: 466px;
+  display: flex;
+  max-width: var(--dl-size-size-maxwidth);
+  align-items: flex-start;
+  flex-direction: column;
+}
+.home-header {
+  gap: var(--dl-space-space-threeunits);
+  width: 100%;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  display: flex;
+  max-width: 1000px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.home-gallery {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: row;
+  padding-bottom: 120px;
+  justify-content: center;
+}
+.home-image {
+  width: 100%;
+  height: 617px;
+  z-index: 10;
+  object-fit: cover;
+}
+@media(max-width: 991px) {
+  .home-section {
+    padding-top: var(--dl-space-space-fourunits);
+    padding-left: var(--dl-space-space-oneandhalfunits);
+    padding-right: var(--dl-space-space-oneandhalfunits);
+    padding-bottom: var(--dl-space-space-fourunits);
+  }
+  .home-text {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  .home-about-us {
+    gap: var(--dl-space-space-threeunits);
+  }
+  .home-header {
+    gap: var(--dl-space-space-oneandhalfunits);
+  }
+}
+@media(max-width: 767px) {
+  .home-image {
+    width: 350px;
+  }
+}
+@media(max-width: 479px) {
+  .home-image {
+    width: 240px;
+  }
+}
