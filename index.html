@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
+   
+    <!-- Include Axios via CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <style data-tag="reset-style-sheet">
       html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
@@ -45,11 +48,41 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+
+    <script>
+      // Function to fetch and update the image using Axios
+      function updateImage() {
+          // Replace 'your_image_api_url' with the actual URL of your image API or source
+          const imageUrl = 'https://beachcam.sandridge.org.au/docs/assets/images/beach.jpg';
+
+          // Append a timestamp to the URL to ensure a fresh copy is fetched
+          const timestamp = new Date().getTime();
+          const imageUrlWithTimestamp = `${imageUrl}?timestamp=${timestamp}`;
+
+          // Use Axios to get the image
+          axios.get(imageUrlWithTimestamp, { responseType: 'blob' })
+              .then(response => {
+                  // Create a data URL for the image
+                  const imageUrl = URL.createObjectURL(response.data);
+
+                  // Update the src attribute of the image element
+                  document.getElementById('dynamicImage').src = imageUrl;
+              })
+              .catch(error => {
+                  console.error('Error fetching image:', error);
+              });
+      }
+
+      // Call the function to update the image when the page loads
+      window.onload = updateImage;
+  </script>
+
+
   </head>
   <body>
-    <link rel="stylesheet" href="/docs/assets/css/style.css" />
+    <link rel="stylesheet" href="https://beachcam.sandridge.org.au/docs/assets/css/style.css" />
     <div>
-      <link href="/docs/assets/css/index.css" rel="stylesheet" />
+      <link href="https://beachcam.sandridge.org.au/docs/assets/css/index.css" rel="stylesheet" />
 
       <div class="home-container">
         <div class="home-section">
@@ -57,8 +90,9 @@
             <div class="home-gallery">
               <img
                 alt="Sandridge Life Saving Club - Beach Camera"
-                src="/docs/assets/images/beach.jpg"
+                src=""
                 class="home-image"
+                id="dynamicImage"
               />
             </div>
           </div>
