@@ -73,8 +73,37 @@
               });
       }
 
+        // Function to fetch and render text from a file
+        function renderText() {
+            // Replace 'your_text_file.txt' with the actual path to your text file
+            const textFileUrl = 'https://beachcam.sandridge.org.au/docs/assets/picturedate.txt';
+
+            // Append a timestamp to the URL to ensure a fresh copy is fetched
+            const timestamp = new Date().getTime();
+            const textFileUrlWithTimestamp = `${textFileUrl}?timestamp=${timestamp}`;
+
+            // Use fetch to get the content of the text file
+            fetch(textFileUrlWithTimestamp)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(textContent => {
+                    // Update the content of the text container
+                    document.getElementById('photoDate').innerText = textContent;
+                })
+                .catch(error => {
+                    console.error('Error fetching text file:', error);
+                });
+        }
+
       // Call the function to update the image when the page loads
-      window.onload = updateImage;
+      window.onload = function () {
+            updateImage();
+            renderText();
+        };
   </script>
 
 
@@ -86,6 +115,7 @@
 
       <div class="home-container">
         <div class="home-section">
+          <h4 class="home-text" id="photoDate"></h4>
           <div class="home-about-us">
             <div class="home-gallery">
               <img
